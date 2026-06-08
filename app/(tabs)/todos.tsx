@@ -133,9 +133,9 @@ export default function TodosScreen() {
       );
 
     if (filter === "pending")
-      return enriched.filter((t: any) => !t.completed && !t.isMissed);
+      return enriched.filter((t: any) => t.status === "pending" && !t.isMissed);
     if (filter === "done")
-      return enriched.filter((t: any) => t.completed || t.status === "skipped");
+      return enriched.filter((t: any) => t.status === "done" || t.status === "skipped");
     return enriched;
   }, [filter, scheduledTodos, computeIsMissed]);
 

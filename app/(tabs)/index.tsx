@@ -2,7 +2,8 @@ import { CameraCapture } from "@/components/CameraCapture";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import type { AppShadows } from "@/constants/Colors";
 import { useUser, useUserRole } from "@/contexts/UserContext";
-import { AppColors, useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
+import type { AppColors } from "@/hooks/useTheme";
 import { formatDateTime } from "@/lib/utils";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { router } from "expo-router";
@@ -18,6 +19,19 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+function friendlyError(error: unknown): string {
+  const msg = error instanceof Error ? error.message : String(error);
+  if (/401|invalid_api_key|Incorrect API key/i.test(msg))
+    return "OpenAI API key is invalid. Update it in your Convex environment settings.";
+  if (/429|rate.?limit/i.test(msg))
+    return "Too many requests — please wait a moment and try again.";
+  if (/network|fetch|ENOTFOUND/i.test(msg))
+    return "Network error. Check your internet connection and try again.";
+  // Strip verbose Convex prefix: "[CONVEX A(...)] [Request ID: ...] Server Error\nUncaught Error: ..."
+  const clean = msg.replace(/\[CONVEX[^\]]*\]\s*/g, "").replace(/\[Request ID:[^\]]*\]\s*/g, "").split("\n").find((l) => l.trim().length > 0) ?? "Something went wrong.";
+  return clean.length > 120 ? clean.slice(0, 120) + "…" : clean;
+}
 
 // Convex hooks — imported conditionally once Convex is configured
 let useAction: any, useMutation: any, useQuery: any, api: any;
@@ -202,7 +216,7 @@ export default function ScanScreen() {
         await processExtracted(extracted);
       } catch (error) {
         console.error("Scan error:", error);
-        showError("Scan failed. Please try again.");
+        showError(friendlyError(error));
       } finally {
         setIsProcessing(false);
         setProcessingStep("");
@@ -233,9 +247,7 @@ export default function ScanScreen() {
       setPrescriptionText("");
     } catch (error) {
       console.error("Lookup error:", error);
-      showError(
-        `Lookup failed: ${error instanceof Error ? error.message : "Please try again."}`,
-      );
+      showError(friendlyError(error));
     } finally {
       setIsProcessing(false);
       setProcessingStep("");
@@ -264,9 +276,7 @@ export default function ScanScreen() {
       await processExtracted(extracted, condition);
     } catch (error) {
       console.error("Suggestion error:", error);
-      showError(
-        `Suggestion failed: ${error instanceof Error ? error.message : "Please try again."}`,
-      );
+      showError(friendlyError(error));
     } finally {
       setIsProcessing(false);
       setProcessingStep("");

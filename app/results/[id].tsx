@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -265,10 +265,12 @@ export default function ScanResultsScreen() {
 
   // Sync initial selection when scan loads (only once)
   const [selectionInitialized, setSelectionInitialized] = useState(false);
-  if (!selectionInitialized && initialSelection.size > 0) {
-    setSelectedMeds(initialSelection);
-    setSelectionInitialized(true);
-  }
+  useEffect(() => {
+    if (!selectionInitialized && initialSelection.size > 0) {
+      setSelectedMeds(initialSelection);
+      setSelectionInitialized(true);
+    }
+  }, [initialSelection, selectionInitialized]);
 
   const toggleMedSelection = useCallback((index: number) => {
     setSelectedMeds((prev) => {

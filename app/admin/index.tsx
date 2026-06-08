@@ -233,8 +233,7 @@ export default function AdminScreen() {
               </View>
               <TouchableOpacity
                 style={styles.revokeBtn}
-                onPress={(e) => {
-                  e.stopPropagation();
+                onPress={() => {
                   handleRevoke(item._id, item.patientName);
                 }}
                 activeOpacity={0.7}

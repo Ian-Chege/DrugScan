@@ -13,6 +13,24 @@ export const { auth, signIn, signOut, store } = convexAuth({
           role: (params.role as string) ?? "patient",
         };
       },
+      reset: {
+        id: "password-reset",
+        type: "email" as const,
+        sendVerificationRequest: async ({
+          identifier: email,
+          token,
+        }: {
+          identifier: string;
+          token: string;
+        }) => {
+          // Production: replace this block with a real email service (e.g. Resend).
+          // For now the code is printed to the Convex dashboard logs so you can
+          // copy it during a demo or development session.
+          console.log(
+            `[DrugScan] Password reset code for ${email} → ${token}`,
+          );
+        },
+      },
     }),
   ],
 

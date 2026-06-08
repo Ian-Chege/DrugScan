@@ -159,6 +159,16 @@ export default function LoginScreen() {
                 <Text style={styles.submitBtnText}>Sign In</Text>
               )}
             </Pressable>
+
+            {/* Forgot password */}
+            <Pressable
+              style={styles.forgotBtn}
+              onPress={() => router.push("/(auth)/forgot-password")}
+              accessibilityRole="button"
+              accessibilityLabel="Forgot password"
+            >
+              <Text style={styles.forgotText}>Forgot your password?</Text>
+            </Pressable>
           </View>
 
           {/* Footer */}
@@ -267,5 +277,7 @@ function createStyles(colors: AppColors, shadows: AppShadows) {
     },
     footerText: { fontSize: 14, color: colors.textSecondary },
     footerLink: { fontSize: 14, color: colors.primary, fontWeight: "700" },
+    forgotBtn: { alignItems: "center", marginTop: 16 },
+    forgotText: { fontSize: 14, color: colors.primary, fontWeight: "600" },
   });
 }

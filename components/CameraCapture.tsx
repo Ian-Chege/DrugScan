@@ -2,7 +2,8 @@ import { useMemo } from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
-import { useTheme, AppColors } from '@/hooks/useTheme';
+import { useTheme } from '@/hooks/useTheme';
+import type { AppColors } from '@/hooks/useTheme';
 import type { AppShadows } from '@/constants/Colors';
 
 interface CameraCaptureProps {
