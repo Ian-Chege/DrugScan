@@ -13,13 +13,11 @@ AI-powered prescription scanner — snap a photo or type a shorthand like `Bruff
 ## Screenshots
 
 <p align="center">
-  <img src="assets/screenshots/scan-screen.jpg" width="200" alt="Scan screen" />
-  <img src="assets/screenshots/results-interactions.jpg" width="200" alt="Scan results with drug interactions" />
-  <img src="assets/screenshots/results-explanation.jpg" width="200" alt="AI-generated medication explanation" />
-</p>
-<p align="center">
-  <img src="assets/screenshots/my-meds-screen.jpg" width="200" alt="My Meds list" />
-  <img src="assets/screenshots/add-reminder-screen.jpg" width="200" alt="Add Reminder form" />
+  <img src="assets/screenshots/home.jpg" width="200" alt="Home — Scan screen" />
+  <img src="assets/screenshots/scan-results.jpg" width="200" alt="Scan results — What to Buy" />
+  <img src="assets/screenshots/my-meds.jpg" width="200" alt="My Meds" />
+  <img src="assets/screenshots/my-day.jpg" width="200" alt="My Day — Reminders" />
+  <img src="assets/screenshots/profile.jpg" width="200" alt="Profile" />
 </p>
 
 ---
