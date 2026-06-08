@@ -12,13 +12,16 @@ AI-powered prescription scanner — snap a photo or type a shorthand like `Bruff
 
 ## Screenshots
 
-<p align="center">
-  <img src="assets/screenshots/home.jpg" width="200" alt="Home — Scan screen" />
-  <img src="assets/screenshots/scan-results.jpg" width="200" alt="Scan results — What to Buy" />
-  <img src="assets/screenshots/my-meds.jpg" width="200" alt="My Meds" />
-  <img src="assets/screenshots/my-day.jpg" width="200" alt="My Day — Reminders" />
-  <img src="assets/screenshots/profile.jpg" width="200" alt="Profile" />
-</p>
+| | |
+|:---:|:---|
+| <img src="assets/screenshots/home.jpg" width="220" /> | **Home — Scan Screen** <br/> Scan a prescription by camera or gallery, type shorthand like `Bruffen 1x3`, enter your condition and allergies for personalised results. |
+| <img src="assets/screenshots/scan-results.jpg" width="220" /> | **Scan Results — What to Buy** <br/> AI-generated medication recommendations with dosage, frequency, safety tips, and interaction warnings. |
+| <img src="assets/screenshots/my-meds.jpg" width="220" /> | **My Meds** <br/> All saved medications with dosage, frequency, purpose, and allergy context. Pause or delete any medication. |
+| <img src="assets/screenshots/my-day.jpg" width="220" /> | **My Day** <br/> Today's medication schedule showing upcoming and missed doses, filterable by status. |
+| <img src="assets/screenshots/profile.jpg" width="220" /> | **Profile** <br/> Account details, role badge, oversight requests from doctors, and sign out. |
+| <img src="assets/screenshots/admin-patients.jpg" width="220" /> | **Admin — All Patients** <br/> Doctors can search all registered patients and send oversight requests to monitor their medications. |
+| <img src="assets/screenshots/admin-my-patients.jpg" width="220" /> | **Admin — My Patients** <br/> Patients who have approved the doctor's oversight request, with option to revoke access. |
+| <img src="assets/screenshots/admin-patient-detail.jpg" width="220" /> | **Admin — Patient Detail** <br/> Full view of a patient's today's adherence, medication list, and ability to send a reminder notification directly. |
 
 ---
 
