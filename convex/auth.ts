@@ -1,5 +1,6 @@
 import { Password } from "@convex-dev/auth/providers/Password";
 import { convexAuth } from "@convex-dev/auth/server";
+import { internal } from "./_generated/api";
 import { DataModel } from "./_generated/dataModel";
 import { MutationCtx } from "./_generated/server";
 
@@ -15,21 +16,17 @@ export const { auth, signIn, signOut, store } = convexAuth({
       },
       reset: {
         id: "password-reset",
+        name: "password-reset",
         type: "email" as const,
-        sendVerificationRequest: async ({
-          identifier: email,
-          token,
-        }: {
-          identifier: string;
-          token: string;
-        }) => {
-          // Production: replace this block with a real email service (e.g. Resend).
-          // For now the code is printed to the Convex dashboard logs so you can
-          // copy it during a demo or development session.
-          console.log(
-            `[DrugScan] Password reset code for ${email} → ${token}`,
-          );
-        },
+        sendVerificationRequest: (async (
+          { identifier: email, token }: { identifier: string; token: string },
+          ctx: any,
+        ) => {
+          await ctx.runAction((internal as any).email.sendPasswordResetEmail, {
+            to: email,
+            code: token,
+          });
+        }) as any,
       },
     }),
   ],

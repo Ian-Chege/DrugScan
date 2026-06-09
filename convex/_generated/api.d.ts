@@ -12,6 +12,7 @@ import type * as admin from "../admin.js";
 import type * as ai from "../ai.js";
 import type * as auth from "../auth.js";
 import type * as drugApi from "../drugApi.js";
+import type * as email from "../email.js";
 import type * as http from "../http.js";
 import type * as medications from "../medications.js";
 import type * as notifications from "../notifications.js";
@@ -33,6 +34,7 @@ declare const fullApi: ApiFromModules<{
   ai: typeof ai;
   auth: typeof auth;
   drugApi: typeof drugApi;
+  email: typeof email;
   http: typeof http;
   medications: typeof medications;
   notifications: typeof notifications;

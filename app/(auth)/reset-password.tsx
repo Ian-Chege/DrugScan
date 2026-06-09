@@ -128,7 +128,7 @@ export default function ResetPasswordScreen() {
                   onChangeText={setCode}
                   placeholder="Enter your reset code"
                   placeholderTextColor={colors.textTertiary}
-                  keyboardType="number-pad"
+                  keyboardType="default"
                   returnKeyType="next"
                   onSubmitEditing={() => newPasswordRef.current?.focus()}
                   accessibilityLabel="Reset code"

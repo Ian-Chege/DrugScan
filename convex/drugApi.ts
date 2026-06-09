@@ -29,12 +29,13 @@ export const checkInteractions = action({
           const data = await response.json();
           if (!data.results?.length) return null;
           const interactionText = data.results[0].drug_interactions?.[0] || "";
-          if (!interactionText.toLowerCase().includes(drug2.toLowerCase())) return null;
+          const relevantText = extractRelevantText(interactionText, drug1, drug2);
+          if (!relevantText) return null;
           return {
             drug1,
             drug2,
-            severity: determineSeverity(interactionText),
-            description: extractRelevantText(interactionText, drug1, drug2),
+            severity: determineSeverity(relevantText),
+            description: relevantText,
           };
         } catch (error) {
           console.error(`Error checking ${drug1} + ${drug2}:`, error);
@@ -70,14 +71,17 @@ function extractRelevantText(
   text: string,
   drug1: string,
   drug2: string,
-): string {
+): string | null {
   const sentences = text.split(/[.!?]+/);
+  const d1 = drug1.toLowerCase();
+  const d2 = drug2.toLowerCase();
+
+  // Only flag if a sentence explicitly mentions both drugs together
   const relevant = sentences.find(
-    (s) =>
-      s.toLowerCase().includes(drug1.toLowerCase()) ||
-      s.toLowerCase().includes(drug2.toLowerCase()),
+    (s) => s.toLowerCase().includes(d1) && s.toLowerCase().includes(d2),
   );
-  return relevant?.trim().substring(0, 200) || text.substring(0, 200);
+
+  return relevant ? relevant.trim().substring(0, 200) : null;
 }
 
 export const checkConditionSafety = action({
